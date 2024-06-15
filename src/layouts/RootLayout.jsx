@@ -17,7 +17,7 @@ function RootLayout({ children }) {
         <div className="hidden md:block border-r">
           <SideNav />
         </div>
-        <main className="px-12 py-4 h-[70vh] overflow-y-auto flex-1">
+        <main className="px-12 py-4 h-[100vh] overflow-y-auto flex-1">
           {children}
         </main>
       </section>
