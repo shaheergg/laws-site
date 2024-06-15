@@ -13,8 +13,8 @@ function RootLayout({ children }) {
       <MobileNav setOpen={setOpen} />
       <HeroSection />
       <Drawer open={open} setOpen={setOpen} />
-      <section className="max-w-7xl px-8 lg:px-4 flex mx-auto py-4">
-        <div className="hidden md:block border-r">
+      <section className="flex px-8 py-4 mx-auto max-w-7xl lg:px-4">
+        <div className="hidden border-r md:block">
           <SideNav />
         </div>
         <main className="px-12 py-4 h-[100vh] overflow-y-auto flex-1">
