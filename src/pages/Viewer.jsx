@@ -4,50 +4,34 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import { useParams } from "react-router-dom";
 import { useLaws } from "../context/laws";
+import PDFViewer from "../components/PDFViewer";
+import { useRegulations } from "../context/regulations";
 
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-//   "pdfjs-dist/build/pdf.worker.min.mjs",
-//   import.meta.url
-// ).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 
 const Viewer = () => {
-  const { revisionId, statuteId } = useParams();
-  //   const url =
-  //     "https://gov.tc/agc/component/edocman/2021-revised-laws-list-of-titles-and-chapters/viewdocument/2021?Itemid=";
-  //   const [pageNumber, setPageNumber] = useState(1);
-  //   const [numPages, setNumPages] = useState(null);
-  //   function onDocumentLoadSuccess({ numPages }) {
-  //     setNumPages(numPages);
-  //   }
-  const selectStatute = useLaws((state) => state.selectStatute);
-  const statute = useLaws((state) => state.statute);
-  useEffect(() => {
-    selectStatute(Number(revisionId), Number(statuteId));
-  }, [revisionId, statuteId]);
+  const regulations = useRegulations((state) => state.regulations);
   return (
     <section>
-      <div className="flex items-center justify-end py-4">
+      <div className="flex items-center justify-end py-4"></div>
+      <div className="flex flex-wrap items-center justify-between">
+        <h2 className="text-xl font-semibold">
+          {regulations[0].code} - {regulations[0].name}
+        </h2>
         <a
-          href="#"
+          href={regulations[0].url}
           title="Download PDF"
-          className="flex p-2 text-sm rounded-md hover:bg-gray-50 items-center gap-4"
+          download={true}
+          className="flex items-center gap-4 p-2 text-sm rounded-md hover:bg-gray-50"
         >
-          Download Regulation
+          Download
         </a>
       </div>
-      <div className="flex flex-wrap items-center justify-between">
-        <h2 className="text-xl font-semibold">{statute.title}</h2>
-      </div>
-      <div>
-        {/* <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={1} />
-        </Document>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p> */}
-        <div className="py-4 flex items-center justify-center">
-          "PDF Viewer will be here"
-        </div>
+      <div className="h-[80vh] py-4 w-full">
+        {regulations[0].url && <PDFViewer pdf={regulations[0].url} />}
       </div>
     </section>
   );
