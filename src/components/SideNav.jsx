@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLaws } from "../context/laws";
 import { Link, useLocation } from "react-router-dom";
 import { useRevisions } from "../context/revisions";
 function SideNav() {
   const revisions = useRevisions((state) => state.revisions);
+  const fetchRevisions = useRevisions((state) => state.fetchRevisions);
   const location = useLocation();
+  useEffect(() => {
+    fetchRevisions();
+  }, [fetchRevisions]);
   return (
     <aside className="h-[100vh] py-8 w-[250px] overflow-y-auto">
       <nav>

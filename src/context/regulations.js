@@ -1,15 +1,17 @@
 import { create } from "zustand";
+import { BASE_URL } from "../constants";
 
 export const useRegulations = create((set) => ({
-  regulations: [
-    {
-      id: 1,
-      lawId: 2,
-      name: "Amblyomma Variegatun, Heartwater and Dermatophilosis",
-      code: "A85-1",
-      date: "15/12/2000",
-      url: "https://www.clickdimensions.com/links/TestPDFfile.pdf",
-    },
-  ],
-  getRegulations: (lawId) => set({}),
+  regulations: [],
+  fetchRegulations: async (lawId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/laws/${lawId}`);
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      set({ regulations: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }));

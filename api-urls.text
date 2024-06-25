@@ -1,0 +1,130 @@
+
+
+1 - Get all "Revisions"
+---------------------------------
+
+URL:
+
+   https://laws-production.mrtnsol.com/api/revisions
+
+Json Response:
+
+
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Revision 2020",
+            "year": 2020,
+            "image": null,
+            "order": 2,
+            "created_at": "2024-06-16T13:35:06.000000Z",
+            "updated_at": "2024-06-16T13:35:06.000000Z"
+        }
+    ]
+}
+
+---------------------------------------
+
+2 - Get all "Laws" base on Revisions id
+
+---------------------------------
+
+URL:
+
+   https://laws-production.mrtnsol.com/api/revisions/1
+
+Json Response:
+
+
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "name": "Revision 2020",
+        "year": 2020,
+        "image": null,
+        "order": 2,
+        "created_at": "2024-06-16T13:35:06.000000Z",
+        "updated_at": "2024-06-16T13:35:06.000000Z",
+        "laws": [
+            {
+                "id": 2,
+                "name": "law 1",
+                "code": "L0001",
+                "pdf": "pdfs/nKjSDCv9YHnUFthCr8OM4Zpk226pZv1pYLqMuQnR.pdf",
+                "revision_id": 1,
+                "created_at": "2024-06-16T14:24:59.000000Z",
+                "updated_at": "2024-06-16T14:24:59.000000Z"
+            },
+            {
+                "id": 3,
+                "name": "Law 2",
+                "code": "L0002",
+                "pdf": "pdfs/aIPEwJL6XAEG3CFAjFVaLBV2GRtkCoKA6qTdAXGC.pdf",
+                "revision_id": 1,
+                "created_at": "2024-06-16T17:34:17.000000Z",
+                "updated_at": "2024-06-16T17:34:17.000000Z"
+            }
+        ]
+    }
+}
+
+------------------------------------------
+
+3 - Get all "Regulations" base on Law id
+
+------------------------------------------
+
+URL:
+
+   https://laws-production.mrtnsol.com/api/laws/2
+
+Json Response:
+
+
+{
+    "success": true,
+    "data": {
+        "id": 2,
+        "name": "law 1",
+        "code": "L0001",
+        "pdf": "pdfs/nKjSDCv9YHnUFthCr8OM4Zpk226pZv1pYLqMuQnR.pdf",
+        "revision_id": 1,
+        "created_at": "2024-06-16T14:24:59.000000Z",
+        "updated_at": "2024-06-16T14:24:59.000000Z",
+        "regulations": [
+            {
+                "id": 2,
+                "name": "Regulation 1",
+                "code": "R0001",
+                "description": null,
+                "pdf": "pdfs/9Bq17sgbZdLYlg6H34rOzkippUt5Q03xuzL8Ju1j.pdf",
+                "law_id": 2,
+                "created_at": "2024-06-16T14:25:17.000000Z",
+                "updated_at": "2024-06-16T14:25:17.000000Z"
+            },
+            {
+                "id": 3,
+                "name": "Regulation 2",
+                "code": "R0002",
+                "description": null,
+                "pdf": "pdfs/7Suujls23k75TrdqZ3oQokUbIWKzASVQx77q2wFd.pdf",
+                "law_id": 2,
+                "created_at": "2024-06-16T17:38:51.000000Z",
+                "updated_at": "2024-06-16T17:38:51.000000Z"
+            },
+            {
+                "id": 4,
+                "name": "Regulation 3",
+                "code": "R0003",
+                "description": null,
+                "pdf": "pdfs/3c6H6DZHxYecmoessoqi8hFu6TGC3TVzGdE08J2v.pdf",
+                "law_id": 2,
+                "created_at": "2024-06-16T17:39:09.000000Z",
+                "updated_at": "2024-06-16T17:39:09.000000Z"
+            }
+        ]
+    }
+}
