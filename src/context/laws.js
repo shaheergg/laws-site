@@ -1,24 +1,15 @@
 import { create } from "zustand";
+import { BASE_URL } from "../constants";
 
 export const useLaws = create((set) => ({
-  laws: [
-    {
-      id: 1,
-      title: "Revised Laws list of titles and chapters",
-      code: "A84",
-      categoryId: 1,
-      information: "",
-      revisionId: 1,
-      date: "12/12/2000",
-    },
-    {
-      id: 2,
-      title: "Animals (Importations) Act",
-      code: "A85",
-      information: "",
-      date: "12/12/2000",
-      revisionId: 2,
-    },
-  ],
-  getLaws: (revisionId) => set({}),
+  laws: [],
+  fetchLaws: async (id) => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/revisions/${id}`);
+      const data = await response.json();
+      set({ laws: data.data });
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 }));

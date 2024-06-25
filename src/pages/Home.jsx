@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useRevisions } from "../context/revisions";
 import RootLayout from "../layouts/RootLayout";
 
 function Home() {
   const revisions = useRevisions((state) => state.revisions);
-
+  const fetchRevisions = useRevisions((state) => state.fetchRevisions);
+  useEffect(() => {
+    fetchRevisions();
+  }, [fetchRevisions]);
   return (
     <RootLayout>
       <div className="">
         <h2 className="text-4xl font-semibold">Revised Laws</h2>
         <div className="grid grid-cols-1 gap-4 py-10 md:grid-cols-3">
-          {revisions.map((revisions) => {
+          {revisions?.map((revisions) => {
             return (
               <Link
                 to={`/revisions/${revisions.id}`}

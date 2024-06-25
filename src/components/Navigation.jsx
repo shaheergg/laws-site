@@ -29,15 +29,12 @@ const Navigation = () => {
           alt="anguilla-gram"
         />
 
-        <Link
+        <a
           className="px-4 py-2 text-white rounded-md bg-cyan-600"
-          to="/dashboard"
-          state={{
-            auth: true,
-          }}
+          href="https://laws-production.mrtnsol.com/login"
         >
           Login
-        </Link>
+        </a>
       </div>
     </nav>
   );

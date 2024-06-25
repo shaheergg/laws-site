@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useLaws } from "../context/laws";
+import { useEffect } from "react";
 
-export default function LawsTable() {
-  const laws = useLaws((state) => state.laws);
+export default function LawsTable({ laws }) {
   return (
     <div className="">
       <div className="flow-root mt-8">
@@ -39,7 +39,7 @@ export default function LawsTable() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {laws.map((law) => (
+                  {laws.laws?.map((law) => (
                     <tr key={law.id}>
                       {/* <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6"></td> */}
                       <td className="px-3 py-4 text-sm whitespace-nowrap">
@@ -47,7 +47,7 @@ export default function LawsTable() {
                           {law.code}
                         </span>
                         <span className="block text-xs italic text-gray-600">
-                          ({law.date})
+                          ({law.created_at.split("T")[0]})
                         </span>
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
@@ -56,7 +56,7 @@ export default function LawsTable() {
                           className="hover:underline text-cyan-500"
                         >
                           {" "}
-                          {law.title}
+                          {law.name}
                         </Link>
                       </td>
 
